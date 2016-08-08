@@ -50,7 +50,7 @@ function numPrimates(){
 function showPrimate(omicronArr , index) {
   var primates = omicronArr[index];
   console.log(index);
-  var primerInfo = '<h2>' + primates.name + '</h2><br><h3>' + "<a href='https://github.com/'" + primates.git_username + ">https://github.com/" + primates.git_username + "</a><br><br>" + primates.shoutout + "</h3>";
+  var primerInfo = '<h2>' + primates.name + '</h2><br><h3>' + "<a href='https://github.com/'" + primates.git_username  +">GitHub Account"+ "</a><br><br>" + primates.shoutout + "</h3>";
 
 
 

@@ -1,0 +1,32 @@
+*{
+  background-color: #c0c0c0;
+}
+.numberButt{
+  position: absolute;
+  top: 50%;
+  left: 35%;
+}
+#forward{
+  position: absolute;
+  top: 30%;
+  right: 30%;
+
+}
+#previous{
+  position: absolute;
+  top: 30%;
+  left: 30%;
+}
+
+a.link {
+  color: blue;
+}
+a.visted{
+  color:purple;
+}
+.person{
+  text-align: center;
+}
+h1{
+  padding-bottom: 20px;
+}
