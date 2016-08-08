@@ -1,23 +1,34 @@
+var primates = []
+var currentPrimate = 0;
 $(document).ready(function(){
   loadData();
 
   $('#forward').on('click', goFor);
   $('#previous').on('click' , goBac);
+  $('.numberButt').on("click" , ".primateNumButt", function(){
+    $(this).data('id')
+    currentPrimate = $(this).data('id');
+    showPrimate(primates, currentPrimate);
+
+  });
 });
-var primates = []
-var currentPrimate = 0;
+
 
 function loadData(){
   $.ajax({
     type: "GET",
     url: "/data",
     success: function(data){
-      console.log(data);
-      var primates = data.omicron;
+      for(var i = 0; i <= 17; i++){
+        primates.push(data.omicron[i]);
+        currentPrimate++;
+      }
+
+
       numPrimates();
       showPrimate(primates, currentPrimate);
-      $('.primateButton').on("click" , primateNum);
-      console.log(primates);
+
+      console.log(primateNum);
     },
 
     error: function() {
@@ -25,18 +36,30 @@ function loadData(){
     }
   });
 }
+console.log(primates);
 
+
+// console.log(omicron);÷
 function numPrimates(){
-  for(var i = 0; i < primates.length; i++){
+  for(var i = 0; i < primates.length - 1; i++){
     var displayNum = i + 1;
-    $('.numberButt').append('<button class = "primateNumButt">' + displayNum + '</button>');
+    $('.numberButt').append('<button class = "primateNumButt" data-id = "' + i  + '">' + displayNum + '</button>');
   }
 }
 
 function showPrimate(omicronArr , index) {
   var primates = omicronArr[index];
-  var primerInfo = '<h3>' + primates.name + '</h3><br><p>' + "<a href='https://github.com/'" + primates.git_username + ">https://github.com/" + primates.git_username + "</a><br>" + primates.shoutout + "</p>";
-console.log(primates)
+  console.log(index);
+  var primerInfo = '<h2>' + primates.name + '</h2><br><h3>' + "<a href='https://github.com/'" + primates.git_username + ">https://github.com/" + primates.git_username + "</a><br><br>" + primates.shoutout + "</h3>";
+
+
+
+$('.person').fadeOut(400, function() {
+      $('.person').html(primerInfo);
+      $('.person').fadeIn(400);
+  });
+
+
   if(index == currentPrimate){
     $('.primateNumButt').removeClass('current');
     $('#' + currentPrimate).addClass('current');
@@ -62,6 +85,6 @@ function goBac(){
 }
 
 function primateNum() {
-  intPrimeNum = parseInt(this.id);
+  currentPrimate = parseInt(this.id);
   showPrimate(primates , currentPrimate)
 }
